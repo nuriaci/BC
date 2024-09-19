@@ -7,7 +7,7 @@ contract FabricaContract {
         string nombre;
         uint identificacion;
     }
-    Producto [] public productos;
+    Producto[] productos;
     
 
     function _crearProducto (string memory _nombre, uint _id) private {
@@ -54,11 +54,4 @@ contract FabricaContract {
         return resultado;
         
     }
-
-
-
-
-
-
-
 }
