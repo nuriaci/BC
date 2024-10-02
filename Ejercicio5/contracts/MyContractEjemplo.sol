@@ -23,11 +23,6 @@ contract MyContractEjemplo is Ownable {
         }
     }
 
-
-    function isUsuario(address user) public view returns (bool) {
-        return users[user];
-    }
-
     function getUsuarios() public view returns (address[] memory) {
         return userList;
     }
