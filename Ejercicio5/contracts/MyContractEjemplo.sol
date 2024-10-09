@@ -12,17 +12,24 @@ contract MyContractEjemplo is Ownable {
 
     constructor() Ownable(msg.sender) {}
 
-    
+    //Regitra un número de usuarios
     function Registrar(uint256 _userCount) public onlyOwner {
         require(_userCount > 0, "El numero de usuarios no es valido"); 
  
         for (uint256 i = 0; i < _userCount; i++) {
             address newUser = address(uint160(uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender, i)))));
-            users[newUser] = true; // Marca al nuevo usuario como registrado
-            userList.push(newUser); // Agrega al nuevo usuario a la lista
+            require(!users[newUser], "El usuario ya esta registrado");
+            users[newUser] = true; //Usuario -> registrado
+            userList.push(newUser); //lo añade a la lista de usuarios
         }
     }
 
+    //Comprueba si el usuario esta registrado
+    function isUsuario(address user) public view returns (bool) {
+        return users[user];
+    }
+
+    //devuelve los usuarios
     function getUsuarios() public view returns (address[] memory) {
         return userList;
     }
